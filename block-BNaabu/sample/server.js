@@ -30,12 +30,12 @@ app.use((req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
-  res.send(err);
+  res.status(500).send(err);
 })
 
 
 // server
 
-app.listen(1234, () => {
-  console.log("Server is listening on port 1234");
+app.listen(3000, () => {
+  console.log("Server is listening on port 3k");
 })
