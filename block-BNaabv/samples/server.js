@@ -18,9 +18,19 @@ app.use(cookieParser());
 
 //url
 
+
+
+
 app.use('/admin', (req, res, next) => {
   next('Unauthorised request');
 });
+
+app.use((req, res, next) => {
+  res.cookie("username", "abc")
+  next();
+});
+
+
 
 app.get('/users/:username', (req, res) => {
   var username = req.params.username;
@@ -32,14 +42,17 @@ app.get('/', (req, res, next) => {
   next();
 });
 
-app.get('/about', (req, res, next) => {
+app.get('/about', (req, res) => {
   res.send('<p><center>My name is qwerty</center></p>');
-  next();
 });
 
-app.post("/json", (req, res, next) => {
-  res.send(req.body);
-  next();
+
+app.post('/form', (req, res) => {
+  res.json(req.body);
+});
+
+app.post("/json", (req, res) => {
+  res.json(req.body);
 })
 
 app.use((req, res, next) => {
